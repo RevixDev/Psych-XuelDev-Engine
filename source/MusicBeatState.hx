@@ -1,5 +1,7 @@
 package;
 
+import openfl.system.System;
+import openfl.utils.Assets;
 import Conductor.BPMChangeEvent;
 import flixel.FlxG;
 import flixel.addons.ui.FlxUIState;
@@ -31,6 +33,15 @@ class MusicBeatState extends FlxUIState
 
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
+
+	override public function destroy() {
+		super.destroy();
+
+		FlxG.bitmap.dumpCache();
+        FlxG.bitmap.clearCache();
+        Assets.cache.clear();
+        System.gc();
+	}
 
 	override function create() {
 		camBeat = FlxG.camera;
