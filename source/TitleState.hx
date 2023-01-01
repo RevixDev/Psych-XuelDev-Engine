@@ -1,5 +1,6 @@
 package;
 
+import FunkinLua.ModchartText;
 import editors.EditorLua;
 #if desktop
 import sys.thread.Thread;
@@ -56,6 +57,7 @@ class TitleState extends MusicBeatState
 	public static var volumeDownKeys:Array<FlxKey> = [FlxKey.NUMPADMINUS, FlxKey.MINUS];
 	public static var volumeUpKeys:Array<FlxKey> = [FlxKey.NUMPADPLUS, FlxKey.PLUS];
 
+
 	public static var initialized:Bool = false;
 
 	var credGroup:FlxGroup;
@@ -70,7 +72,8 @@ class TitleState extends MusicBeatState
 
 	var wackyImage:FlxSprite;
 
-	var script:EditorLua;
+	var engineExclusive = true;
+
 
 	#if TITLE_SCREEN_EASTER_EGG
 	var easterEggKeys:Array<String> = [
@@ -88,20 +91,32 @@ class TitleState extends MusicBeatState
 
 	var bg:FlxSprite;
 
+	var exclusiveText:FlxText;
+
 	override public function create():Void
 	{
+
+
 
 		#if LUA_ALLOWED
 		Paths.pushGlobalMods();
 		#end
 		// Just to load a mod on start up if ya got one. For mods that change the menu music and bg
 		WeekData.loadTheFirstEnabledMod();
+
+
 		
 
 
 		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.color = 0xFF353535;
 		add(bg);
+
+		exclusiveText  = new FlxText(0,700,0,"XuelDev Engine Exclusive", 16);
+		exclusiveText.screenCenter(X);
+		exclusiveText.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		exclusiveText.visible = engineExclusive;
+		add(exclusiveText);
 	
 		
 
