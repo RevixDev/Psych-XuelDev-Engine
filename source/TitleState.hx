@@ -72,7 +72,7 @@ class TitleState extends MusicBeatState
 
 	var wackyImage:FlxSprite;
 
-	var engineExclusive = true;
+	var engineExclusive = false;
 
 
 	#if TITLE_SCREEN_EASTER_EGG
