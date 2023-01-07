@@ -93,8 +93,10 @@ class TitleState extends MusicBeatState
 
 	var exclusiveText:FlxText;
 
+
 	override public function create():Void
 	{
+
 
 
 
@@ -439,6 +441,7 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
@@ -619,7 +622,9 @@ class TitleState extends MusicBeatState
 	{
 		super.beatHit();
 
+
 		FlxTween.tween(FlxG.camera, {zoom:1.02}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
+
 
 		
 
@@ -711,6 +716,7 @@ class TitleState extends MusicBeatState
 	{
 		if (!skippedIntro)
 		{
+
 			add(gfDance);
 			add(logoBl);
 			add(titleText);
